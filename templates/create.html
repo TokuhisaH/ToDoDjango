@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content%}
+<!-- {% csrf_token %}でセキュリティ上の脆弱性を克服する。とりあえず入れておく-->
+<form action="" method="POST">{% csrf_token %}
+  <!-- データを送るフォームをpタグで囲って扱える
+        ページのソースを見るとわかる
+    -->
+  {{form.as_p}}
+  <input type="submit" value = "作成する">
+</form>
+{% endblock content %}

@@ -1,0 +1,14 @@
+{% extends 'base.html'%}
+
+{% block content %}
+<form action='' method='POST'>{% csrf_token %}
+  <!-- .as_pじゃなくて個別にやる場合はこれでもいい
+        でも見た目が崩れる
+        -->
+  {{form.title}}
+  {{form.memo}}
+  {{form.priority}}
+  {{form.duedate}}
+  <input type='submit' value='更新'>
+</form>
+{% endblock content%}

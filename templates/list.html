@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">しないことリスト</h1>
+    <p class="lead">とりあえずしないことを書き連ねましょう</p>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<!-- conteinerクラスで幅を調節してくれる-->
+<div class ='container'>
+  <a href="{% url 'create' %}" class="btn btn-info btn-lg" role="button" aria-pressed="true">
+    新規作成
+  </a>
+
+
+{% for item in object_list %}
+<!-- データの優先度に応じて背景色を変える-->
+<div class="alert alert-{{item.priority}}" role="alert">
+  <p>{{item.title}} 期日：{{item.duedate}}</p>
+  <!-- classの末尾にactive disabledなどをつけるとボタン機能の有効無効が切り替わる
+        btn-lgはサイズを表す
+        primaryとかが色を指定している
+  
+        リンク指定でurl.pyの遷移を呼び出せる
+        item.pkで投稿を指定
+  -->
+  <a href="{% url 'detail' item.pk %}" class="btn btn-info btn-lg" role="button" aria-pressed="true">
+    詳細
+  </a>
+  <a href="{% url 'update' item.pk %}" class="btn btn-primary btn-lg" role="button" aria-pressed="true">
+    編集
+  </a>
+  <a href="{% url 'delete' item.pk %}" class="btn btn-success btn-lg" role="button" aria-pressed="true">
+    削除
+  </a>
+  </div>
+{% endfor %}
+</div>
+{% endblock content %}
